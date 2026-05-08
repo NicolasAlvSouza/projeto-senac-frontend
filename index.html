@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Integração API - Usuários</title>
+</head>
+<body>
+
+    <h1>Gestão de Usuários</h1>
+
+    <!-- Seção de Cadastro (POST) -->
+    <section>
+        <h2>Novo Usuário</h2>
+        <form id="form-usuario">
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" required>
+            </div>
+            <div>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div>
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" required>
+            </div>
+            <div>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" required>
+            </div>
+            <button type="submit">Salvar Usuário</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <!-- Seção de Listagem (GET) -->
+    <section>
+        <h2>Usuários Cadastrados</h2>
+        <button id="btn-carregar">Atualizar Lista</button>
+        
+        <table border="1" style="margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="lista-usuarios">
+                <!-- Os dados da API serão injetados aqui via JS -->
+            </tbody>
+        </table>
+    </section>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
