@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Perfil do Usuário</h1>
+        <p>Consulte suas informações pessoais armazenadas no backend.</p>
+    </header>
+
+    <nav class="page-nav">
+        <a class="button" href="index.html">Início</a>
+        <a class="button" href="cadastro.html">Cadastro</a>
+        <a class="button" href="login.html">Login</a>
+        <a class="button" href="tarefas.html">Tarefas</a>
+        <a class="button" href="perfil.html">Perfil</a>
+    </nav>
+
+    <div class="container">
+        <section class="card instructions">
+            <h2>Instruções</h2>
+            <p>Esta página exibe os dados do usuário autenticado usando o token JWT salvo no navegador.</p>
+        </section>
+
+        <section class="card" id="perfil-card">
+            <h2>Meus Dados</h2>
+            <div id="perfil-info"></div>
+            <button id="btn-logout" class="secondary">Sair</button>
+        </section>
+
+        <section class="card">
+            <h2>Resultado da API</h2>
+            <div id="resultado"></div>
+        </section>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/perfil.js"></script>
+</body>
+</html>

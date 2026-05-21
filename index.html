@@ -2,77 +2,43 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Integração API - Usuários</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API REST Usuários e Tarefas</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header>
+        <h1>API REST — Usuários e Tarefas</h1>
+        <p>Front-end didático para mostrar a integração entre o cliente e o backend.</p>
+    </header>
 
-    <h1>Gestão de Usuários</h1>
+    <nav class="page-nav">
+        <a class="button" href="index.html">Início</a>
+        <a class="button" href="cadastro.html">Cadastro</a>
+        <a class="button" href="login.html">Login</a>
+        <a class="button" href="tarefas.html">Tarefas</a>
+    </nav>
 
-    <!-- Seção de Cadastro (POST) -->
-    <section>
-        <h2>Novo Usuário</h2>
-        <form id="form-usuario">
-            <input type="hidden" id="usuario-id">
-            <div>
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" required>
+    <div class="container">
+        <section class="card">
+            <h2>Bem-vindo</h2>
+            <p>Esta aplicação exemplifica o fluxo de cadastro, login e gerenciamento de tarefas usando JWT.</p>
+            <div class="split">
+                <a class="button" href="cadastro.html">Cadastro de Usuário</a>
+                <a class="button" href="login.html">Login</a>
+                <a class="button" href="perfil.html">Perfil</a>
+                <a class="button" href="tarefas.html">Minhas Tarefas</a>
             </div>
-            <div>
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" required>
-            </div>
-            <div>
-                <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" required>
-            </div>
-            <div>
-                <label for="dataNascimento">Data de Nascimento:</label>
-                <input type="date" id="dataNascimento" required>
-            </div>
-            <div>
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" required>
-            </div>
-            <button type="submit" id="btn-salvar">Salvar</button>
-            <button type="reset" id="btn-cancelar">Cancelar</button>
-        </form>
-    </section>
+        </section>
 
-    <hr>
+        <section class="card">
+            <h2>Como usar</h2>
+            <p>1. Cadastre um usuário.</p>
+            <p>2. Faça login para receber o token JWT.</p>
+            <p>3. Acesse a página de tarefas para criar e listar as tarefas do seu usuário.</p>
+        </section>
+    </div>
 
-    <!-- Seção de Listagem (GET) -->
-    <section>
-        <h2>Usuários Cadastrados</h2>
-        <button id="btn-carregar">Atualizar Lista</button>
-        
-        <table border="1" style="margin-top: 10px;">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>Data de Nascimento</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="lista-usuarios">
-                <!-- Os dados da API serão injetados aqui via JS -->
-            </tbody>
-        </table>
-    </section>
-
-    <hr>
-
-    <!-- Seção de Tarefas do Usuário -->
-    <section id="secao-tarefas" style="display: none;">
-        <h2>Tarefas do Usuário: <span id="nome-usuario-tarefas"></span></h2>
-        <button id="btn-voltar">Voltar à Lista</button>
-        <ul id="lista-tarefas" style="margin-top: 10px;">
-            <!-- As tarefas serão injetadas aqui via JS -->
-        </ul>
-    </section>
-
-    <script src="js/usuarios.js"></script>
+    <footer>Front-end simples para demonstrar chamadas REST em Node.js + Express + SQLite.</footer>
 </body>
 </html>
