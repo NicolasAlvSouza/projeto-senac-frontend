@@ -1,5 +1,4 @@
 const formTarefa = document.getElementById('form-tarefa');
-const perfilInfo = document.getElementById('perfil-info');
 const listaTarefasCards = document.getElementById('lista-tarefas-cards');
 const listaTarefasTabela = document.getElementById('lista-tarefas-tabela');
 const tabelaWrapper = document.getElementById('tarefas-tabela-wrapper');
@@ -13,25 +12,6 @@ let viewMode = 'cards';
 
 setupValidation(formTarefa);
 
-async function carregarPerfil() {
-    try {
-        const perfil = await apiRequest('/usuarios/perfil');
-
-        if (perfilInfo) {
-            perfilInfo.innerHTML = `
-                <div class="perfil-grid">
-                    <div class="perfil-item"><div class="pi-label">ID</div><div class="pi-value">${perfil.id}</div></div>
-                    <div class="perfil-item"><div class="pi-label">Nome</div><div class="pi-value">${perfil.nome}</div></div>
-                    <div class="perfil-item"><div class="pi-label">E-mail</div><div class="pi-value">${perfil.email}</div></div>
-                    <div class="perfil-item"><div class="pi-label">Telefone</div><div class="pi-value">${perfil.telefone}</div></div>
-                </div>
-            `;
-        }
-    } catch (erro) {
-        mostrarResultado(`Falha ao carregar perfil: ${erro.message}`, 'error');
-        logout();
-    }
-}
 
 async function carregarTarefas() {
     if (!listaTarefasCards || !listaTarefasTabela) {
@@ -82,7 +62,7 @@ function renderTarefas() {
             <span class="badge ${tarefa.concluida ? 'done' : 'pending'}">
                 ${tarefa.concluida ? 'Concluida' : 'Pendente'}
             </span>
-            <div class="tarefa-card-title">${tarefa.titulo}</div>
+            <div class="tarefa-card-title"> <b>#${tarefa.id}</b> ${tarefa.titulo}</div>
             <div class="tarefa-card-actions">
                 <button class="small" onclick="toggleTarefa(${tarefa.id}, ${tarefa.concluida}, ${tituloSeguro})">
                     ${tarefa.concluida ? 'Reabrir' : 'Concluir'}
@@ -94,6 +74,7 @@ function renderTarefas() {
 
         const linha = document.createElement('tr');
         linha.innerHTML = `
+            <td>${tarefa.id}</td>
             <td>${tarefa.titulo}</td>
             <td>
                 <span class="status ${tarefa.concluida ? 'done' : 'pending'}">
@@ -118,13 +99,20 @@ function aplicarModoVisualizacao() {
         return;
     }
 
-    const cards = viewMode === 'cards';
-    cardsWrapper.classList.toggle('is-hidden', !cards);
-    tabelaWrapper.classList.toggle('is-hidden', cards);
-    btnViewCards.classList.toggle('active', cards);
-    btnViewTable.classList.toggle('active', !cards);
-    btnViewCards.classList.toggle('secondary', !cards);
-    btnViewTable.classList.toggle('secondary', cards);
+    const isCardsView = viewMode === 'cards';
+    const isTableView = !isCardsView;
+
+    // Exibição
+    cardsWrapper.classList.toggle('is-hidden', isTableView);
+    tabelaWrapper.classList.toggle('is-hidden', isCardsView);
+
+    // Botões ativos
+    btnViewCards.classList.toggle('active', isCardsView);
+    btnViewTable.classList.toggle('active', isTableView);
+
+    // Estilo secundário
+    btnViewCards.classList.toggle('secondary', isTableView);
+    btnViewTable.classList.toggle('secondary', isCardsView);
 }
 
 async function criarTarefa(event) {
@@ -181,19 +169,17 @@ if (btnLogout) {
     btnLogout.addEventListener('click', () => logout(true));
 }
 
-if (btnViewCards) {
-    btnViewCards.addEventListener('click', () => {
-        viewMode = 'cards';
-        aplicarModoVisualizacao();
-    });
-}
+btnViewCards.addEventListener('click', () => {
+    viewMode = 'cards';
+    aplicarModoVisualizacao();
+});
 
-if (btnViewTable) {
-    btnViewTable.addEventListener('click', () => {
-        viewMode = 'table';
-        aplicarModoVisualizacao();
-    });
-}
+
+btnViewTable.addEventListener('click', () => {
+    viewMode = 'table';
+    aplicarModoVisualizacao();
+});
+
 
 window.toggleTarefa = toggleTarefa;
 window.excluirTarefa = excluirTarefa;

@@ -33,19 +33,6 @@
     <!-- ── CONTEÚDO ── -->
     <div class="container">
 
-        <!-- Perfil resumido -->
-        <section class="card" id="perfil-card">
-            <div class="card-header">
-                <div>
-                    <h2>Perfil</h2>
-                    <p>Usuário autenticado via JWT.</p>
-                </div>
-            </div>
-            <!-- tarefas.js popula este elemento -->
-            <div id="perfil-info"></div>
-            <button id="btn-logout" class="secondary">Sair da conta</button>
-        </section>
-
         <!-- Nova tarefa + lista -->
         <section class="card" id="tarefas-card">
             <div class="card-header">
@@ -77,9 +64,10 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>#ID</th>
                             <th>Titulo</th>
                             <th>Status</th>
-                            <th>Acoes</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody id="lista-tarefas-tabela"></tbody>

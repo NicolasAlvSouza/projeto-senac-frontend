@@ -1,5 +1,5 @@
 const API_BASE = 'https://tarefas-carlos.vercel.app';
-const TOKEN_KEY = 'acesso-carlos';
+const TOKEN_KEY = 'token-api-1234';
 
 function getToken() {
     return localStorage.getItem(TOKEN_KEY);
